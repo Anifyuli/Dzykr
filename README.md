@@ -8,6 +8,7 @@ You can install binary build of **Dzykr** from release page
 ## To-do Plans
 - [ ] Manage latest release
 - [ ] UI enhancements
+- [ ] Add app settings
 
 You can help me to fill this to-do by making new issue in this project
 
