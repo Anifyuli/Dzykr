@@ -4,9 +4,15 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int num = 0; // Counted dhikr
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Dzykr'),
+          title: const Center(child: Text('Dzykr')),
           backgroundColor: Colors.green,
         ),
         body: Center(
@@ -23,15 +29,26 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
-              const Text(
-                '99',
-                style: TextStyle(fontSize: 120),
+              
+              // Dhikr counted value
+              Text(
+                num.toString(),
+                style: const TextStyle(fontSize: 120),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
+
+              // Add button
               ElevatedButton(
-                onPressed: null,
+                onPressed: () {
+                  setState(() {
+                    num++;
+                  });
+                },
                 style: ButtonStyle(
-                  padding: MaterialStateProperty.all(const EdgeInsets.fromLTRB(32, 20, 32, 20)),
+                  padding: MaterialStateProperty.all(
+                      const EdgeInsets.fromLTRB(32, 20, 32, 20)),
                   backgroundColor: MaterialStateProperty.all(Colors.green),
                 ),
                 child: const Icon(
@@ -41,6 +58,32 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               const Spacer(),
+
+              // Reset button
+              Container(
+                alignment: Alignment.bottomRight,
+                margin: const EdgeInsets.only(bottom: 30, right: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      num = 0;
+                    });
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(const CircleBorder()),
+                    padding: MaterialStateProperty.all(
+                        const EdgeInsets.fromLTRB(32, 20, 32, 20)),
+                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                  ),
+                  child: const Icon(
+                    Icons.autorenew,
+                    color: Colors.white,
+                    size: 32,
+                  ),
+                ),
+              ),
+
+              // Option button
               Container(
                 alignment: Alignment.bottomRight,
                 margin: const EdgeInsets.only(bottom: 30, right: 20),
@@ -48,11 +91,12 @@ class MyApp extends StatelessWidget {
                   onPressed: null,
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(const CircleBorder()),
-                    padding: MaterialStateProperty.all(const EdgeInsets.fromLTRB(32, 20, 32, 20)),
-                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                    padding: MaterialStateProperty.all(
+                        const EdgeInsets.fromLTRB(32, 20, 32, 20)),
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   child: const Icon(
-                    Icons.delete,
+                    Icons.menu_rounded,
                     color: Colors.white,
                     size: 32,
                   ),
